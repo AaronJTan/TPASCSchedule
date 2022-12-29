@@ -3,7 +3,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-def tpascSchedule(url):
+def getProgramSched(url):
     page = requests.get(url)
 
     soup = BeautifulSoup(page.content, "html.parser")
@@ -34,7 +34,7 @@ def tpascSchedule(url):
 
 if __name__ == "__main__":
     def usage():
-        print ('Usage:	' + os.path.basename(__file__) + ' option file ')
+        print ('Usage: ' + os.path.basename(__file__) + ' option')
         print ('Options:')
         print ('\t -h, --help')
         print ('\t -b, --badminton')
@@ -62,9 +62,9 @@ if __name__ == "__main__":
     if (len(selected) == 0):
         selected.append("badminton")    #badminton is default
 
-    json_file = open('tpasc.json') 
+    json_file = open(os.path.dirname(os.path.abspath(__file__)) + '/tpasc.json') 
     programs = json.load(json_file)
 
     for item in selected:
         for url in programs[item]:
-            tpascSchedule(url)
+            getProgramSched(url)
