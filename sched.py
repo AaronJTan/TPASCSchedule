@@ -3,13 +3,13 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-def getProgramSched(url):
+def getActivitySched(url):
     page = requests.get(url)
 
     soup = BeautifulSoup(page.content, "html.parser")
-    programName = soup.find('h1').string
-    print(programName)
-    print("–"*len(programName))
+    activityName = soup.find('h1').string
+    print(activityName)
+    print("–"*len(activityName))
 
     schedTable = soup.find(id="schedule-table")
 
@@ -63,8 +63,8 @@ if __name__ == "__main__":
         selected.append("badminton")    #badminton is default
 
     json_file = open(os.path.dirname(os.path.abspath(__file__)) + '/tpasc.json') 
-    programs = json.load(json_file)
+    activities = json.load(json_file)
 
     for item in selected:
-        for url in programs[item]:
-            getProgramSched(url)
+        for url in activities[item]:
+            getActivitySched(url)
