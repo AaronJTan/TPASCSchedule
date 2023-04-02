@@ -58,9 +58,6 @@ if __name__ == "__main__":
             selected.append("pickleball")
         elif opt in ("-r", "--rock-climbing"):
             selected.append("rock-climbing")
-    
-    if (len(selected) == 0):
-        selected.append("badminton")    #badminton is default
 
     json_file = open(os.path.dirname(os.path.abspath(__file__)) + '/tpasc.json') 
     activities = json.load(json_file)
