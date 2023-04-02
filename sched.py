@@ -25,7 +25,7 @@ def getActivitySched(url):
 
             date = data[0].string
             time = data[1].string
-            court = data[2].a.string
+            court = data[2].a.string if (data[2].a != None) else data[2].string.strip()
 
             print("%s \t\t %s \t\t %s" % (date, time, court))   
         
@@ -58,6 +58,9 @@ if __name__ == "__main__":
             selected.append("pickleball")
         elif opt in ("-r", "--rock-climbing"):
             selected.append("rock-climbing")
+    
+    if (len(selected) == 0):
+        usage()
 
     json_file = open(os.path.dirname(os.path.abspath(__file__)) + '/tpasc.json') 
     activities = json.load(json_file)
